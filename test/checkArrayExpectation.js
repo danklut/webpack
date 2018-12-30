@@ -56,7 +56,7 @@ module.exports = function checkArrayExpectation(
 			return (
 				done(
 					new Error(
-						`More ${kind}s while compiling than expected:\n\n${array.join(
+						`More ${kind}s while compiling than expected:\n\n${array.map(explain).join(
 							"\n\n"
 						)}. Check expected ${kind}s: ${expectedFilename}`
 					)
@@ -67,7 +67,7 @@ module.exports = function checkArrayExpectation(
 			return (
 				done(
 					new Error(
-						`Less ${kind}s while compiling than expected:\n\n${array.join(
+						`Less ${kind}s while compiling than expected:\n\n${array.map(explain).join(
 							"\n\n"
 						)}. Check expected ${kind}s: ${expectedFilename}`
 					)
@@ -106,7 +106,7 @@ module.exports = function checkArrayExpectation(
 	} else if (array.length > 0) {
 		return (
 			done(
-				new Error(`${upperCaseKind}s while compiling:\n\n${array.join("\n\n")}`)
+				new Error(`${upperCaseKind}s while compiling:\n\n${array.map(explain).join("\n\n")}`)
 			),
 			true
 		);
